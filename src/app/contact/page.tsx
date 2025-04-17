@@ -1,5 +1,7 @@
 export default function Contact() {
     return (
-        <h1>Contact</h1>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-black text-gray-200">
+            <h2>Contact</h2>
+        </div>
     );
 }
