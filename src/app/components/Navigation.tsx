@@ -12,12 +12,12 @@ export default function Navigation() {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-mono font-bold">
-              <span className="text-sky-300/80">{`{`}</span>
-              <span className="text-teal-300/90">linkan</span>
-              <span className="text-indigo-300/90">.</span>
-              <span className="text-cyan-300/90">dev</span>
-              <span className="text-sky-300/80">{`}`}</span>
-              <span className="animate-pulse text-slate-400/70 ml-1">_</span>
+              <span className="text-zinc-400">{`{`}</span>
+              <span className="text-gray-200">linkan</span>
+              <span className="text-zinc-400">.</span>
+              <span className="text-gray-300">dev</span>
+              <span className="text-zinc-400">{`}`}</span>
+              <span className="animate-pulse text-zinc-500 ml-1">_</span>
             </Link>
           </div>
 
@@ -40,11 +40,6 @@ export default function Navigation() {
               <Link href="/projects" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
                 Projects <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
-                </svg>
-              </Link>
-              <Link href="/about" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
-                About <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                 </svg>
               </Link>
               <Link href="/contact" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
