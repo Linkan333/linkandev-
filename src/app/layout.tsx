@@ -36,7 +36,7 @@ export default function RootLayout({
               <div>
                 <h3 className="text-lg font-semibold mb-4 text-gray-200">Contact</h3>
                 <p className="text-sm">Feel free to reach out!</p>
-                <p className="text-sm">Email: [REDACTED]</p>
+                <a className="text-gray-400 hover:text-white transition-colors text-sm font-bold" href="/contact">Contact</a>
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-4 text-gray-200">Social Links</h3>
@@ -44,7 +44,7 @@ export default function RootLayout({
                   <a href="https://github.com/Linkan333" className="text-gray-400 hover:text-white transition-colors">
                     GitHub
                   </a>
-                  <a href="https://linkedin.com/in/yourusername" className="text-gray-400 hover:text-white transition-colors">
+                  <a href="https://www.linkedin.com/in/linus-nyberg-a98982346/" className="text-gray-400 hover:text-white transition-colors">
                     LinkedIn
                   </a>
                 </div>
