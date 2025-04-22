@@ -1,4 +1,54 @@
+'use client';
+
+import { useState, FormEvent } from 'react';
+
 export default function Contact() {
+    const [isLoading, setIsLoading] = useState(false);
+    const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({
+        type: null,
+        message: ''
+    });
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setStatus({ type: null, message: '' });
+
+        const formData = new FormData(e.currentTarget);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            message: formData.get('message')
+        };
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                setStatus({
+                    type: 'success',
+                    message: 'Message sent successfully! I will get back to you soon.'
+                });
+                (e.target as HTMLFormElement).reset();
+            } else {
+                throw new Error('Failed to send message');
+            }
+        } catch (error) {
+            setStatus({
+                type: 'error',
+                message: 'Failed to send message. Please try again later.'
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div className="flex flex-col min-h-screen pt-5 px-4 md:px-8 bg-deep-dark text-gray-200 relative overflow-hidden">
             {/* Animated background gradient */}
@@ -96,14 +146,17 @@ export default function Contact() {
                         <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/5 to-transparent rounded-xl"></div>
                         <div className="relative">
                             <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
-                            <form className="space-y-6">
+                            <form onSubmit={handleSubmit} className="space-y-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
                                     <input
                                         type="text"
                                         id="name"
+                                        name="name"
+                                        required
                                         className="w-full px-4 py-2.5 bg-zinc-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500/50 focus:border-transparent outline-none text-gray-200"
                                         placeholder="Your name"
+                                        disabled={isLoading}
                                     />
                                 </div>
                                 <div>
@@ -111,27 +164,57 @@ export default function Contact() {
                                     <input
                                         type="email"
                                         id="email"
+                                        name="email"
+                                        required
                                         className="w-full px-4 py-2.5 bg-zinc-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500/50 focus:border-transparent outline-none text-gray-200"
                                         placeholder="your.email@example.com"
+                                        disabled={isLoading}
                                     />
                                 </div>
                                 <div>
                                     <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
                                     <textarea
                                         id="message"
+                                        name="message"
+                                        required
                                         rows={4}
                                         className="w-full px-4 py-2.5 bg-zinc-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500/50 focus:border-transparent outline-none text-gray-200 resize-none"
                                         placeholder="Your message here..."
+                                        disabled={isLoading}
                                     ></textarea>
                                 </div>
+
+                                {status.type && (
+                                    <div className={`p-4 rounded-lg ${
+                                        status.type === 'success' 
+                                            ? 'bg-green-500/10 text-green-300 border border-green-500/20' 
+                                            : 'bg-red-500/10 text-red-300 border border-red-500/20'
+                                    }`}>
+                                        {status.message}
+                                    </div>
+                                )}
+
                                 <button
                                     type="submit"
-                                    className="w-full inline-flex justify-center items-center gap-2 text-white bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-[1.02]"
+                                    disabled={isLoading}
+                                    className="w-full inline-flex justify-center items-center gap-2 text-white bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
                                 >
-                                    Send Message
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
-                                    </svg>
+                                    {isLoading ? (
+                                        <>
+                                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg>
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        <>
+                                            Send Message
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                                            </svg>
+                                        </>
+                                    )}
                                 </button>
                             </form>
                         </div>

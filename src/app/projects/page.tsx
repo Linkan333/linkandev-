@@ -137,27 +137,6 @@ export default function Projects() {
                             </div>
                         </div>
                     </div>
-
-                    {/* Placeholder cards for future projects */}
-                    {[...Array(5)].map((_, i) => (
-                        <div key={i} className="relative group rounded-xl overflow-hidden bg-zinc-900/50 ring-1 ring-gray-700">
-                            <div className="p-6">
-                                <div className="flex items-center justify-between mb-4">
-                                    <span className="text-gray-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
-                                        </svg>
-                                    </span>
-                                    <span className="inline-block px-3 py-1 rounded-full bg-zinc-800/50 text-gray-500 text-xs font-medium">Coming Soon</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-500 mb-2">Future Project</h3>
-                                <p className="text-gray-600 mb-4">More exciting projects coming soon. Stay tuned!</p>
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    <span className="px-2 py-1 rounded-md bg-zinc-800/50 text-gray-500 text-xs">TBD</span>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
                 </div>
             </div>
         </div>
