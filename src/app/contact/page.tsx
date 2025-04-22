@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, FormEvent } from 'react';
 
 export default function Contact() {
@@ -55,7 +54,7 @@ export default function Contact() {
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-deep-dark animate-gradient-slow"></div>
             
             {/* Floating orbs */}
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden">Iä
                 <div className="absolute top-20 right-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl animate-float-slow"></div>
                 <div className="absolute -bottom-20 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float-slower"></div>
             </div>
@@ -64,7 +63,7 @@ export default function Contact() {
             <div className="relative z-10 w-full max-w-4xl mx-auto">
                 <div className="mb-12">
                     <h1 className="text-4xl font-bold mb-4">Get in Touch<span className="text-indigo-300">.</span></h1>
-                    <p className="text-gray-400 max-w-2xl">Whether you're a potential employer looking for talent or just want to connect, I'm always open to new opportunities and conversations.</p>
+                    <p className="text-gray-400 max-w-2xl">Whether you&apos;re a potential employer looking for talent or just want to connect, I&apos;m always open to new opportunities and conversations.</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12">

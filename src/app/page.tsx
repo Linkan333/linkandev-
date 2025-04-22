@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 export default function Home() {
     return (
         <div className="flex min-h-screen pt-5 px-4 md:px-8 bg-deep-dark text-gray-200 relative overflow-hidden">
@@ -16,10 +19,12 @@ export default function Home() {
                 <div className="sticky top-5 space-y-6">
                     <div className="relative w-40 h-40 md:w-48 md:h-48 group mx-auto">
                         <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full animate-spin-slow blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                        <img
+                        <Image
                             src="/static/images/pfpic.jpeg"
                             className="rounded-full p-1 ring-2 ring-gray-300 dark:ring-gray-700 object-cover w-full h-full relative"
                             alt="Profile Picture"
+                            width={200}
+                            height={200}
                         />
                     </div>
 
@@ -158,7 +163,7 @@ export default function Home() {
                             <p className="text-gray-300 text-lg mb-8 max-w-2xl">
                                 Discover my latest projects in web development and cybersecurity. From full-stack applications to CTF challenges, see how I turn ideas into reality.
                             </p>
-                            <a href="/projects" className="group inline-flex items-center gap-2 text-white bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-[1.02]">
+                            <Link href="/projects" className="group inline-flex items-center gap-2 text-white bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-[1.02]">
                                 Look at my projects
                                 <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
@@ -170,7 +175,7 @@ export default function Home() {
                                 >
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                                 </svg>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
